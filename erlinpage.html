@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erlin Greeting Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .fade-enter {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    .fade-active {
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.5s ease;
+    }
+    .hidden-page {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-[#042a00] text-white min-h-screen flex items-center justify-center px-6">
+  <!-- Page Container -->
+  <div id="container" class="w-full max-w-md">
+
+    <!-- PAGE 1 -->
+    <section id="page1" class="fade-active">
+      <div class="text-white text-center">
+        <p class="text-[24px] sm:text-[28px] font-light leading-tight -mt-2">Halo <span class="inline-block">🖐️</span>,</p>
+        <h1 class="text-[40px] sm:text-[56px] font-bold">Erlin Patricia</h1>
+        <button onclick="changePage(1, 2)" class="mt-5 bg-white text-[#042a00] text-[18px] sm:text-[20px] font-medium rounded-full px-6 py-2 inline-flex items-center justify-center">
+          Open Here! 🎉
+        </button>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section id="page2" class="hidden-page">
+      <div class="flex flex-col items-start p-2">
+        <button onclick="changePage(2, 1)" class="bg-[#C9FFBD] text-[#042400] font-semibold rounded-full px-6 py-1 text-sm mb-4">Back</button>
+        <main class="max-w-xl w-full">
+          <p class="text-[20px] sm:text-[28px] font-light mb-0 leading-tight">Halo <span class="inline-block -translate-y-1">🖐️</span>,</p>
+          <h1 class="text-[36px] sm:text-[48px] font-bold leading-tight mb-4">Erlin Patricia</h1>
+          <p class="text-xs sm:text-sm font-normal leading-relaxed mb-6 text-justify">
+            Geloo... udah 20 aja... resmi dah join kepala dua 😭. Fix sih abis ini makin sering dipanggil mbak, kak... atau ibu² 🤣. Aku dong masih 19 (tapi 10 hari lagi nyusul-ku jirlah 😭).
+            <br><br>
+            Tapi ya... selamat ulang tahun yang ke-20! 🎂 Sorry ya cui, gak bisa kasih apa-apa yang kece atau apapun itu 🙂, kita kan jauh eay.
+            <br><br>
+            Tapi ya ini coba2 aja ngide buat kek gini yekan yg ku buat sendiri (bantuan AI juga beberapa) dengan penuh niat wkwk. Sorry juga agak telat harusnya jam 1 malam ku send ini tapi lagi agak sibuk ku. yaudah lah ya klik <strong>lanjut</strong> aja cui penuh sudah teks di page ini.
+          </p>
+          <button onclick="changePage(2, 3)" class="w-full bg-white text-[#042400] font-semibold text-lg sm:text-2xl rounded-xl py-1">Lanjut 🎈</button>
+        </main>
+      </div>
+    </section>
+
+    <!-- PAGE 3 -->
+    <section id="page3" class="hidden-page">
+      <main class="w-full flex flex-col justify-center h-[100vh] px-4 py-3">
+        <div>
+          <button onclick="changePage(3, 2)" class="bg-[#c9f7c9] text-[#042000] font-semibold text-sm rounded-full px-5 py-1 mb-4">Back</button>
+          <p class="font-semibold text-xs sm:text-sm mb-2">Erlin Patricia, Jum’at, 27 Juni 2025 🎂</p>
+          <div class="border border-[#c9f7c9] rounded-xl p-3 text-xs sm:text-sm mb-2">
+            🎂 Anjay Ulang Tahun ke-20 nih 😎 Udah masuk ke usia baru, katanya sih udah “kepala dua” 🧠
+          </div>
+          <div class="border border-[#c9f7c9] rounded-xl p-3 text-xs sm:text-sm mb-2">
+            Semoga kuliahnya tetap lancar sampe lulus ntar 🎓. Dan hal-hal pribadi bisa dilewati satu per satu tanpa banyak drama. Tapi tiap masalah pasti bisa ja teratasi ya lo? 💪
+          </div>
+          <div class="border border-[#c9f7c9] rounded-xl p-3 flex items-center gap-3 text-xs sm:text-sm mb-2">
+            <div class="flex-1">
+              Sekali lagi, 🎉 Selamat ulang tahun yang ke-20. Semoga sehat terus, tetap waras, dan jadi versi terbaik dari diri mu — apa pun versi mu hari ini 😌
+            </div>
+            <img src="da0e388c5dc7de3fb4c9cdb6276d00e6.jpg" alt="Erlin" class="w-16 h-20 rounded-lg object-cover flex-shrink-0" />
+          </div>
+          <div class="border border-[#c9f7c9] rounded-xl p-3 text-xs sm:text-sm mb-2">
+            btw, aku nak pamer dah mythic cui 😎 Modal hero “aku bluetooth, cih tidak akan 🥶”. Semangat push rank ya pake hero “papipapipum 👼” atau yang cinta alam “ayo hijaukan dan hidupkan dunia 🌱🌍✨”
+          </div>
+          <div class="border border-[#c9f7c9] rounded-xl p-3 text-xs sm:text-sm">
+            sorry kalo rada kentut desainnya 💫 Gimana gak kentut ni desain orang yg ngolahnya aja Winky 🐒 anak Universitas Mangkurat Palangka Raya 😎
+          </div>
+        </div>
+      </main>
+    </section>
+
+  </div>
+
+  <script>
+    function changePage(from, to) {
+      const fromPage = document.getElementById(`page${from}`);
+      const toPage = document.getElementById(`page${to}`);
+
+      fromPage.classList.add('hidden-page');
+      toPage.classList.remove('hidden-page');
+      toPage.classList.remove('fade-active'); // reset
+      toPage.classList.add('fade-enter');
+
+      // Force reflow
+      void toPage.offsetWidth;
+
+      toPage.classList.remove('fade-enter');
+      toPage.classList.add('fade-active');
+    }
+  </script>
+</body>
+</html>

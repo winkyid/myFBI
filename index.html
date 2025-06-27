@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Splash Screen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .animate-fade-in {
+      animation: fade-in 1s ease-in-out forwards;
+    }
+
+    @keyframes fade-out-black {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .fade-overlay {
+      animation: fade-out-black 1s forwards;
+    }
+
+    .modal-glass {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body class="bg-[#2B2B2B] h-screen flex items-center justify-center animate-fade-in relative overflow-hidden">
+
+  <!-- Splash Image -->
+  <div class="w-full h-full flex items-center justify-center z-10">
+    <img 
+      src="splash screen-(Compressify.io).jpg" 
+      alt="Splash Screen myFBI" 
+      class="w-[80%] max-w-md object-contain"
+    />
+  </div>
+
+  <!-- Dots bawah -->
+  <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+    <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+    <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+    <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+  </div>
+
+  <!-- Modal Informasi -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center z-20">
+    <!-- Latar belakang hitam blur -->
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+    <!-- Konten modal -->
+    <div class="modal-glass relative max-w-md w-full p-6 md:p-8 text-white rounded-xl shadow-lg z-30">
+      <h1 class="text-purple-600 font-extrabold text-xl mb-4 drop-shadow-[0_0_10px_rgba(128,0,255,0.8)] text-center">
+        INFORMASI
+      </h1>
+      <p class="text-sm leading-relaxed mb-2 text-justify">
+        Sistem ini dibuat murni berdasarkan ide pribadi dan inisiatif iseng dari saya sendiri, tanpa ada afiliasi resmi, kerja sama, ataupun koordinasi langsung dengan pihak
+        <span class="text-purple-600 font-semibold drop-shadow-[0_0_10px_rgba(128,0,255,0.8)]">Fakultas Bisnis &amp; Informatika</span>.
+      </p>
+      <p class="text-sm leading-relaxed mb-2 text-justify">
+        Semua konten yang ditampilkan hanya sebagai contoh konsep.
+      </p>
+      <p class="text-sm leading-relaxed mb-4 text-justify">
+        Mohon jangan dianggap sebagai sistem resmi dari fakultas.
+      </p>
+      <p class="italic mb-6 text-justify">— <span class="font-semibold">Winky</span></p>
+      <div class="flex items-center mb-6 space-x-3">
+        <div class="relative flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-tr from-purple-700 to-purple-400 shadow-[0_0_10px_rgba(128,0,255,0.8)]">
+          <i class="fas fa-check text-white text-xs drop-shadow-[0_0_2px_rgba(0,0,0,0.7)]"></i>
+        </div>
+        <p class="text-[10px] italic text-gray-300 select-none text-justify">
+          I understand and acknowledge the above information.
+        </p>
+      </div>
+      <button id="btnOk" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-extrabold text-lg rounded-md py-2 shadow-[0_0_15px_rgba(128,0,255,0.8)] transition duration-300">
+        OK
+      </button>
+    </div>
+  </div>
+
+  <!-- Layer Fade Black Fullscreen -->
+  <div id="fade-layer" class="fixed inset-0 bg-black opacity-0 z-50 pointer-events-none"></div>
+
+  <script>
+    // Tampilkan modal setelah 2.5 detik
+    setTimeout(() => {
+      const modal = document.getElementById('modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }, 2500);
+
+    // Saat tombol OK ditekan, tampilkan layer hitam dan redirect
+    document.getElementById('btnOk').addEventListener('click', () => {
+      const fadeLayer = document.getElementById('fade-layer');
+      fadeLayer.classList.remove('pointer-events-none');
+      fadeLayer.classList.add('fade-overlay');
+
+      // Pindah ke home.html setelah animasi fade selesai (1 detik)
+      setTimeout(() => {
+        window.location.href = 'home.html';
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>

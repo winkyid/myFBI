@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>My FBI Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(180deg, #2a2a2a 0%, #2a2a2a 60%, #3a2a4a 85%, #7a00d9 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+    main {
+      padding-bottom: 100px;
+    }
+    .modal-error {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Modal Error -->
+  <div id="modalError" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+    <div class="modal-error max-w-md w-full p-6 md:p-8 text-white rounded-xl shadow-lg bg-black/50">
+      <h1 class="text-red-600 font-extrabold text-xl mb-4 text-center drop-shadow-[0_0_10px_rgba(132,0,1,0.8)]">KEGAGALAN</h1>
+      <p class="text-sm leading-relaxed mb-2 text-justify">
+        UI HomeMainActivity Terdapat Kegagalan atau error tidak terduga yang menyebabkan sistem crashe atau nge-freeze. Klik <strong>‘OK’</strong> untuk me-refresh tampilan seperti semula.
+      </p>
+      <p class="text-gray-300 italic text-sm mb-6 select-none">
+        <em>error report auto send to developer</em> <span class="text-green-600">success</span>
+      </p>
+      <button onclick="goToErlin()" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-extrabold text-lg rounded-md py-2 shadow-[0_0_15px_rgba(128,0,255,0.8)] transition duration-300">OK</button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="relative bg-[#2a2a2a] pt-4 pb-3 px-4">
+    <div
+      class="absolute top-0 left-0 w-full h-20 rounded-br-[60px] opacity-30 grid grid-cols-10 gap-6 px-6 py-5"
+      style="background: linear-gradient(to right, #2a004a, #3a3a3a);"
+    >
+      <div class="col-span-10 flex justify-start items-center space-x-6">
+        <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+      </div>
+    </div>
+    <div class="relative flex justify-between items-center max-w-5xl mx-auto">
+      <div class="flex items-center space-x-2 bg-[#1a1a1a] rounded-full px-4 py-2">
+        <img
+          alt="Green FBI emblem with white details"
+          src="logoinhome.png"
+          width="80"
+        />
+      </div>
+      <div class="bg-[#1a1a1a] rounded-full p-3">
+        <i class="fas fa-user text-white text-xl"></i>
+      </div>
+    </div>
+  </header>
+  <!-- Main content -->
+  <main class="flex-grow max-w-5xl mx-auto px-6 pt-6 pb-20">
+    <p class="text-white text-xs italic mb-1">Selamat datang Kembali,</p>
+    <h1 class="text-white text-3xl font-semibold mb-6">Akun Demo Tes</h1>
+    <!-- Top grid of icons -->
+    <section class="grid grid-cols-4 gap-4 mb-8">
+      <div class="flex flex-col items-center">
+        <div class="bg-[#b7d9f9] rounded-xl w-20 h-20 flex justify-center items-center">
+          <i class="fas fa-graduation-cap text-black text-4xl"></i>
+        </div>
+        <span class="text-white text-xs mt-2 text-center font-semibold">SIAKAD</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="bg-[#b9ffbe] rounded-xl w-20 h-20 flex justify-center items-center">
+          <i class="fas fa-calendar-alt text-black text-4xl"></i>
+        </div>
+        <span class="text-white text-xs mt-2 text-center font-semibold"
+          >JADWAL KULIAH</span
+        >
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="bg-[#9b7ea3] rounded-xl w-20 h-20 flex justify-center items-center">
+          <i class="fas fa-id-card text-black text-4xl"></i>
+        </div>
+        <span
+          class="text-white text-xs mt-2 text-center font-semibold leading-tight"
+          >DOSEN PENGAMPU</span
+        >
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="bg-[#a7c9ff] rounded-xl w-20 h-20 flex justify-center items-center">
+          <i class="fas fa-door-open text-black text-4xl"></i>
+        </div>
+        <span
+          class="text-white text-xs mt-2 text-center font-semibold leading-tight"
+          >INFORMASI RUANGAN</span
+        >
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="bg-[#ffd6a7] rounded-xl w-20 h-20 flex justify-center items-center">
+          <i class="fas fa-info-circle text-black text-4xl"></i>
+        </div>
+        <span
+          class="text-white text-xs mt-2 text-center font-semibold leading-tight"
+          >INFORMASI FAKULTAS</span
+        >
+      </div>
+      <div class="flex flex-col items-center">
+        <div
+          class="bg-[#ff9ea0] rounded-xl w-20 h-20 flex justify-center items-center"
+          title="Practicum for Informatics students"
+        >
+          <i class="fas fa-flask text-black text-4xl"></i>
+        </div>
+        <span class="text-white text-xs mt-2 text-center font-semibold">PRAKTIKUM</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="bg-[#ffefc0] rounded-xl w-20 h-20 flex justify-center items-center">
+          <i class="fas fa-cogs text-black text-4xl"></i>
+        </div>
+        <span
+          class="text-white text-xs mt-2 text-center font-semibold leading-tight"
+          >LAYANAN TATA USAHA</span
+        >
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="bg-[#cbd2d6] rounded-xl w-20 h-20 flex justify-center items-center">
+          <i class="fas fa-folder text-black text-4xl"></i>
+        </div>
+        <span class="text-white text-xs mt-2 text-center font-semibold">FILE DOKUMEN</span>
+      </div>
+    </section>
+    <!-- Bottom grid with background images and text -->
+    <section class="grid grid-cols-2 gap-6 mb-6">
+      <div
+        class="relative rounded-xl overflow-hidden shadow-lg"
+        style="background-color: #3a2a4a; z-index: 0;"
+      >
+        <img
+          alt="Background with colorful charts and graphs"
+          class="absolute inset-0 w-full h-full object-cover opacity-30"
+          height="150"
+          loading="lazy"
+          src="https://storage.googleapis.com/a1aa/image/7f6e2a68-39c9-496e-67c8-517a7156a34c.jpg"
+          width="300"
+        />
+        <div
+          class="relative z-20 flex items-center justify-center h-32 text-white text-xl font-semibold text-center leading-snug drop-shadow-[0_0_6px_rgba(0,0,0,0.9)]"
+        >
+          SISTEM INFORMASI
+        </div>
+      </div>
+      <div
+        class="relative rounded-xl overflow-hidden shadow-lg"
+        style="background-color: #3a2a4a; z-index: 0;"
+      >
+        <img
+          alt="Background with computer science related icons and charts"
+          class="absolute inset-0 w-full h-full object-cover opacity-30"
+          height="150"
+          loading="lazy"
+          src="https://storage.googleapis.com/a1aa/image/ca7f0636-eca1-4522-879b-f9cc6b0e2f36.jpg"
+          width="300"
+        />
+        <div
+          class="relative z-20 flex items-center justify-center h-32 text-white text-xl font-semibold text-center leading-snug drop-shadow-[0_0_6px_rgba(0,0,0,0.9)]"
+        >
+          ILMU KOMPUTER
+        </div>
+      </div>
+      <div
+        class="relative rounded-xl overflow-hidden shadow-lg"
+        style="background-color: #2a1a4a; z-index: 0;"
+      >
+        <img
+          alt="Background with digital business charts and graphs"
+          class="absolute inset-0 w-full h-full object-cover opacity-30"
+          height="150"
+          loading="lazy"
+          src="https://storage.googleapis.com/a1aa/image/754ddec3-d855-42b8-a952-c2691fb329aa.jpg"
+          width="300"
+        />
+        <div
+          class="relative z-20 flex items-center justify-center h-32 text-white text-xl font-semibold text-center leading-snug drop-shadow-[0_0_6px_rgba(0,0,0,0.9)]"
+        >
+          BISNIS DIGITAL
+        </div>
+      </div>
+      <div
+        class="relative rounded-xl overflow-hidden shadow-lg"
+        style="background-color: #3a3a4a; z-index: 0;"
+      >
+        <img
+          alt="Background with business management charts and graphs"
+          class="absolute inset-0 w-full h-full object-cover opacity-30"
+          height="150"
+          loading="lazy"
+          src="https://storage.googleapis.com/a1aa/image/95e00d9c-bf42-44d8-3b71-7aaf8f0a9178.jpg"
+          width="300"
+        />
+        <div
+          class="relative z-20 flex items-center justify-center h-32 text-white text-xl font-semibold text-center leading-snug drop-shadow-[0_0_6px_rgba(0,0,0,0.9)]"
+        >
+          MANAJEMEN BISNIS
+        </div>
+      </div>
+    </section>
+    <!-- Pagination dots -->
+    <div class="flex justify-center space-x-3 mb-10">
+      <div class="w-4 h-4 rounded-full bg-[#7a00d9]"></div>
+      <div class="w-4 h-4 rounded-full bg-gray-400"></div>
+      <div class="w-4 h-4 rounded-full bg-gray-400"></div>
+      <div class="w-4 h-4 rounded-full bg-gray-400"></div>
+      <div class="w-4 h-4 rounded-full bg-gray-400"></div>
+    </div>
+  </main>
+  <!-- Bottom navigation -->
+  <nav class="fixed bottom-4 left-0 right-0 px-6 z-30">
+    <div
+      class="max-w-5xl mx-auto bg-[#cbd2d6] rounded-xl flex justify-between items-center py-3 px-6 shadow-lg"
+    >
+      <button
+        class="flex flex-col items-center text-[#7a00d9] font-semibold text-[0.625rem] relative"
+      >
+        <i class="fas fa-home text-3xl drop-shadow-[0_0_10px_rgba(122,0,217,0.7)]"></i>
+        <span class="mt-1">BERANDA</span>
+      </button>
+      <button class="flex flex-col items-center text-black font-semibold text-[0.625rem]">
+        <i class="fas fa-calendar-alt text-3xl"></i>
+        <span class="mt-1 text-center leading-tight">AGENDA</span>
+      </button>
+      <button class="flex flex-col items-center text-black font-semibold text-[0.625rem]">
+        <i class="fas fa-bell text-3xl"></i>
+        <span class="mt-1">NOTIFIKASI</span>
+      </button>
+      <button class="flex flex-col items-center text-black font-semibold text-[0.625rem]">
+        <i class="fas fa-tasks text-3xl"></i>
+        <span class="mt-1 text-center leading-tight">SURVEY</span>
+      </button>
+      <button class="flex flex-col items-center text-black font-semibold text-[0.625rem]">
+        <i class="fas fa-user text-3xl"></i>
+        <span class="mt-1 text-center leading-tight">AKUN</span>
+      </button>
+    </div>
+  </nav>
+
+  <script>
+    // Fade in saat halaman dibuka
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+
+      // Tampilkan modal error setelah 5 detik jika belum ditrigger manual
+      setTimeout(() => {
+        const modal = document.getElementById('modalError');
+        if (modal) modal.classList.remove('hidden');
+      }, 10000);
+    });
+
+    // Fungsi redirect ke erlinpage.html dengan animasi fade putih
+    function goToErlin() {
+      document.body.style.transition = 'opacity 0.7s ease-out';
+      document.body.style.opacity = 0;
+      setTimeout(() => {
+        window.location.href = 'erlinpage.html';
+      }, 700);
+    }
+
+    // Buat semua fitur bisa trigger modal langsung (manual click)
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('button, .grid div, section div').forEach(el => {
+        el.addEventListener('click', () => {
+          const modal = document.getElementById('modalError');
+          if (modal) modal.classList.remove('hidden');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
